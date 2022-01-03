@@ -11,7 +11,15 @@ Exemplo: 'The dinner is not that bad!' retorna 'The dinner is good!'
 
 def not_bad(s):
     # +++ SUA SOLUÇÃO +++
-    return
+    string_to_return = s
+    not_index = s.find('not')
+    bad_index = s.find('bad')
+    continuation_from_not = s[not_index:]
+    continuation_from_bad = s[bad_index:]
+    if continuation_from_not.find('bad') > -1:
+        string_to_return = "".join([s[:not_index], continuation_from_bad.replace("bad", "good")])
+
+    return string_to_return
 
 
 # --- Daqui para baixo são apenas códigos auxiliáries de teste. ---
