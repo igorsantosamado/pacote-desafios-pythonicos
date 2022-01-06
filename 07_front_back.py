@@ -10,9 +10,26 @@ Exemplo: 'abcde', a metade da frente é 'abc' e a de trás é 'de'.
 Finalmente, dadas duas strings a e b, retorne uma string na forma:
 a-frente + b-frente + a-trás + b-trás
 """
+
+
 def front_back(a, b):
     # +++ SUA SOLUÇÃO +++
-    return
+    front_a = manage_char_split(a, 'front')
+    back_a = manage_char_split(a, 'back')
+    front_b = manage_char_split(b, 'front')
+    back_b = manage_char_split(b, 'back')
+
+    return "".join([front_a, front_b, back_a, back_b])
+
+
+def manage_char_split(string, position='front'):
+    string_to_return = ""
+    if position == "front":
+        string_to_return = string[:len(string) // 2 if len(string) % 2 == 0 else ((len(string) // 2) + 1)]
+    elif position == "back":
+        string_to_return = string[len(string) // 2 if len(string) % 2 == 0 else ((len(string) // 2) + 1):]
+
+    return string_to_return
 
 
 # --- Daqui para baixo são apenas códigos auxiliáries de teste. ---
