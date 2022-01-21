@@ -11,9 +11,16 @@ Dica: Isso pode ser resolvido criando 2 listas e ordenando cada uma
 antes de combina-las.
 """
 
+
 def front_x(words):
     # +++ SUA SOLUÇÃO +++
-    return
+
+    comeca_com_x = list(filter(lambda word: word[0] == "x", words))
+    restante = list(filter(lambda word: word[0] != "x", words))
+    comeca_com_x.sort()
+    restante.sort()
+
+    return comeca_com_x + restante
 
 
 # --- Daqui para baixo são apenas códigos auxiliáries de teste. ---
