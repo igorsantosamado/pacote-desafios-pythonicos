@@ -57,6 +57,41 @@ import sys
 # +++ SUA SOLUÇÃO +++
 # Defina as funções print_words(filename) e print_top(filename).
 
+def get_chars_from_file(filename):
+    f = open(filename, 'r')
+    list_chars = [char.upper() for line in f for char in line.split()]
+    f.close()
+    return list_chars
+
+
+def get_chars_count(chars):
+    return {char: chars.count(char) for char in dict.fromkeys(chars)}
+
+
+def print_chars(chars, reverse=False, sorted_by="key", qty="all"):
+    dict_char_count_sorted = {key: count for key, count in sorted(chars.items(),
+                                                                  key=lambda item: item[
+                                                                      0 if sorted_by == "key" else 1
+                                                                      if sorted_by == "value" else 0],
+                                                                  reverse=reverse)}
+
+    for char, count in list(dict_char_count_sorted.items())[: None if qty == "all" else qty]:
+        print(f"{char} {count}")
+
+
+def print_words(filename):
+    list_chars = get_chars_from_file(filename)
+    dict_char_count = get_chars_count(list_chars)
+
+    print_chars(dict_char_count)
+
+
+def print_top(filename):
+    list_chars = get_chars_from_file(filename)
+    dict_char_count = get_chars_count(list_chars)
+
+    print_chars(dict_char_count, True, "value", 20)
+
 
 # A função abaixo chama print_words() ou print_top() de acordo com os
 # parêtros do programa.
